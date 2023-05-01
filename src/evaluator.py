@@ -1,7 +1,8 @@
 import json
+import sys
 
-filepath = "/path/to/output.jsonl"
-truth_file = "/path/to/truth.masked.txt"
+filepath = sys.argv[1]
+truth_file = sys.argv[2]
 
 truth_dict = {}
 with open(truth_file) as f:
@@ -26,8 +27,10 @@ with open(filepath) as f:
         # deal with the ambiguitiy of no/zero
         if truth == "no":
             truth = "zero"  # always use zero
-        result_list = ["zero" if item["word"] == "no" else item["word"]
-                       for item in data["result_list"]]
+        result_list = [
+            "zero" if item["word"] == "no" else item["word"]
+            for item in data["result_list"]
+        ]
         if truth == result_list[0]:
             correct_cnt += 1
         if truth in result_list[:2]:
@@ -37,7 +40,7 @@ with open(filepath) as f:
 
 print(filepath)
 print("num_probes:", num_probes)
-print("top1-acc:", correct_cnt/num_probes)
-print("top2-acc:", correct_top2_cnt/num_probes)
-print("top3-acc:", correct_top3_cnt/num_probes)
+print("top1-acc:", correct_cnt / num_probes)
+print("top2-acc:", correct_top2_cnt / num_probes)
+print("top3-acc:", correct_top3_cnt / num_probes)
 # print(truth_dict)
