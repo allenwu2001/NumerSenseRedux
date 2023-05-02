@@ -52,6 +52,7 @@ class HappyTransformer:
             "BERT",
             "ROBERTA",
             "DISTILBERT",
+            "ALBERT",
             "XLNET",
         ]
 
