@@ -19,19 +19,8 @@ from happytransformer.happy_transformer import HappyTransformer
 class HappyALBERT(HappyTransformer):
     """
     Currently available public methods:
-        BertForMaskedLM:
+        AlbertForMaskedLM:
             1. predict_mask(text: str, options=None, k=1)
-        BertForSequenceClassification:
-            1. init_sequence_classifier()
-            2. advanced_init_sequence_classifier()
-            3. train_sequence_classifier(train_csv_path)
-            4. eval_sequence_classifier(eval_csv_path)
-            5. test_sequence_classifier(test_csv_path)
-        BertForNextSentencePrediction:
-            1. predict_next_sentence(sentence_a, sentence_b)
-        BertForQuestionAnswering:
-            1. answer_question(question, text)
-
     """
 
     def __init__(self, model="bert-base-uncased"):

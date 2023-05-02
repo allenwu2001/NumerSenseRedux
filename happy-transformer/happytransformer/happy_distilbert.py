@@ -8,8 +8,6 @@ HappyDISTILBERT: a wrapper over PyTorch's DISTILBERT implementation
 import re
 from transformers import (
     DistilBertForMaskedLM,
-    # DistilBertForNextSentencePrediction,
-    # DistilBertForQuestionAnswering,
     DistilBertTokenizer,
 )
 
@@ -21,19 +19,8 @@ from happytransformer.happy_transformer import HappyTransformer
 class HappyDISTILBERT(HappyTransformer):
     """
     Currently available public methods:
-        BertForMaskedLM:
+        DistilBertForMaskedLM:
             1. predict_mask(text: str, options=None, k=1)
-        BertForSequenceClassification:
-            1. init_sequence_classifier()
-            2. advanced_init_sequence_classifier()
-            3. train_sequence_classifier(train_csv_path)
-            4. eval_sequence_classifier(eval_csv_path)
-            5. test_sequence_classifier(test_csv_path)
-        BertForNextSentencePrediction:
-            1. predict_next_sentence(sentence_a, sentence_b)
-        BertForQuestionAnswering:
-            1. answer_question(question, text)
-
     """
 
     def __init__(self, model="bert-base-uncased"):
@@ -52,25 +39,6 @@ class HappyDISTILBERT(HappyTransformer):
         """
         self.mlm = DistilBertForMaskedLM.from_pretrained(self.model)
         self.mlm.eval()
-
-    # def _get_next_sentence_prediction(self):
-    #     """
-    #     Initializes the BertForNextSentencePrediction transformer
-    #     """
-    #     self.nsp = DistilBertForNextSentencePrediction.from_pretrained(
-    #         self.model
-    #     )
-    #     self.nsp.eval()
-
-    # def _get_question_answering(self):
-    #     """
-    #     Initializes the BertForQuestionAnswering transformer
-    #     NOTE: This uses the bert-large-uncased-whole-word-masking-finetuned-squad pretraining for best results.
-    #     """
-    #     self.qa = DistilBertForQuestionAnswering.from_pretrained(
-    #         "bert-large-uncased-whole-word-masking-finetuned-squad"
-    #     )
-    #     self.qa.eval()
 
     def predict_next_sentence(
         self, sentence_a, sentence_b, use_probability=False
