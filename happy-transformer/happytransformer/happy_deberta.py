@@ -7,8 +7,8 @@ HappyDEBERTA: a wrapper over PyTorch's DEBERTA implementation
 # pylint: disable=W0511
 import re
 from transformers import (
-    DebertaV2ForMaskedLM,
-    AutoTokenizer,
+    DebertaForMaskedLM,
+    DebertaTokenizer,
 )
 
 import torch
@@ -19,7 +19,7 @@ from happytransformer.happy_transformer import HappyTransformer
 class HappyDEBERTA(HappyTransformer):
     """
     Currently available public methods:
-        DebertaV2ForMaskedLM:
+        DebertaForMaskedLM:
             1. predict_mask(text: str, options=None, k=1)
     """
 
@@ -28,7 +28,7 @@ class HappyDEBERTA(HappyTransformer):
         self.mlm = None  # Masked Language Model
         self.nsp = None  # Next Sentence Prediction
         self.qa = None  # Question Answering
-        self.tokenizer = AutoTokenizer.from_pretrained(model)
+        self.tokenizer = DebertaTokenizer.from_pretrained(model)
         self.masked_token = self.tokenizer.mask_token
         self.sep_token = self.tokenizer.sep_token
         self.cls_token = self.tokenizer.cls_token
@@ -37,7 +37,7 @@ class HappyDEBERTA(HappyTransformer):
         """
         Initializes the BertForMaskedLM transformer
         """
-        self.mlm = DebertaV2ForMaskedLM.from_pretrained(self.model)
+        self.mlm = DebertaForMaskedLM.from_pretrained(self.model)
         self.mlm.eval()
 
     def predict_next_sentence(
