@@ -3,6 +3,7 @@ from happytransformer import HappyROBERTA
 from happytransformer import HappyBERT
 from happytransformer import HappyDISTILBERT
 from happytransformer import HappyALBERT
+from happytransformer import HappyDEBERTA
 from tqdm import tqdm
 import sys
 import json
@@ -53,6 +54,9 @@ if __name__ == "__main__":
         elif model_str.startswith("albert"):
             # albert-base-v2
             model = HappyALBERT(model_str + "-v2")
+        elif model_str.startswith("deberta"):
+            # deberta-base
+            model = HappyDEBERTA("microsoft/" + model_str)
         elif model_str.startswith("xlnet"):
             # ignore
             model = HappyXLNET(model_str + "-cased")

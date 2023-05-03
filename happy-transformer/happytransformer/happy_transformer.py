@@ -53,6 +53,7 @@ class HappyTransformer:
             "ROBERTA",
             "DISTILBERT",
             "ALBERT",
+            "DEBERTA",
             "XLNET",
         ]
 
@@ -288,6 +289,7 @@ class HappyTransformer:
             if (
                 self.model_name != "ROBERTA"
                 and self.model_name != "DISTILBERT"
+                and self.model_name != "DEBERTA"
             ):
                 segments_ids = self._get_segment_ids(text)
                 segments_tensors = torch.tensor([segments_ids])
