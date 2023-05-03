@@ -34,6 +34,12 @@ if __name__ == "__main__":
         elif model_str.startswith("reload_roberta"):
             model_str = model_str.replace("reload_roberta:", "")
             model = HappyROBERTA(model_str)
+        elif model_str.startswith("reload_distilbert"):
+            model_str = model_str.replace("reload_distilbert:", "")
+            model = HappyDISTILBERT(model_str)
+        elif model_str.startswith("reload_albert"):
+            model_str = model_str.replace("reload_albert:", "")
+            model = HappyALBERT(model_str)
     else:
         if model_str.startswith("bert"):
             # bert-base, bert-large
