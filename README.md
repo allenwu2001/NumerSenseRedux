@@ -3,25 +3,23 @@
 
 Project website: https://inklab.usc.edu/NumerSense/
 
-Code & Data for EMNLP 2020 paper:
+Code & Data for 2023 extension paper:
 
 ```bibtex
-@inproceedings{lin2020numersense,
-  title={Birds have four legs?! NumerSense: Probing Numerical Commonsense Knowledge of Pre-trained Language Models},
-  author={Bill Yuchen Lin and Seyeon Lee and Rahul Khanna and Xiang Ren}, 
-  booktitle={Proceedings of EMNLP},
-  year={2020},
-  note={to appear}
+@inproceedings{lin202enumersense,
+  title={Extending "Birds have four legs?! NumerSense: Probing Numerical Commonsense Knowledge of Pre-trained Language Models"},
+  author={Alex Baroody and Emilio Cano and Allen Wu}, 
+  year={2023}
 }
 ```
 
 ## Installation 
 
 ```bash
-conda create -n numersense python=3.7
-conda activate numersense
+conda create -n numersenseredux python=3.7
+conda activate numersenseredux
 # install torch seperately at https://pytorch.org/get-started/locally/ if needed
-conda install pytorch==1.6.0 cudatoolkit=10.1 -c pytorch -n numersense
+conda install pytorch==1.6.0 cudatoolkit=10.1 -c pytorch -n numersenseredux
 pip install transformers==3.3.1
 # pip install happytransformer -U
 pip install --editable happy-transformer
@@ -48,7 +46,7 @@ python src/mlm_predict.py bert-base \
         results/bert-base.test.all.output.jsonl
 ```
 
-Note that `bert-base` can be replaced by any model name in `[bert-base, bert-large, roberta-base, roberta-large]`.
+Note that `bert-base` can be replaced by any model name in `[bert-base, bert-large, roberta-base, roberta-large, distilbert-base, albert-base, deberta-large]`.
 
 For left-to-right language models:
 ```bash
@@ -77,7 +75,7 @@ CUDA_VISIBLE_DEVICES=0 python src/finetune_mlm.py \
 ```
 
 ```bash 
-python src/mlm_infer.py \
+python src/mlm_predict.py \
         reload_bert:saved_models/finetuned_bert_large \
         data/test.core.masked.txt \
         results/test.core.output.jsonl
@@ -86,66 +84,3 @@ python src/mlm_infer.py \
 ## Evaluation on Validation Set
 
 Check out `data/validation.masked.tsv`. We realease 200 annotated examples (132 from the `core` split and 68 from the `all` split) for method development so that users can better test their method frquently without submitting the prediction for the test set. **Note that these 200 examples should NOT be used for any training.** Also, they are still part of the the test data.
-
-## Evaluation on Test Set
-
-To evaluate your model's ability on NumerSense's official test sets,
-please submit a prediction file to *yuchen.lin@usc.edu*, which should contain a json line for each probe example. And a json line should follow the format in the below code snippet. You can also check the example, `results/bert-base.test.core.output.jsonl` , which is the predictions of BERT-base on core set.
-The `score` key is optional.
-When submitting your predictions, please submit both `core` and `all` results, and inform us whether you have used the training data for fine-tuning. Thanks!
-The evaluation script we will use is `src/evaluator.py`.
- ```json
-{
-  "probe": "a bird has <mask> legs.",
-  "result_list": [
-    {
-      "word": "four",
-      "score": 0.23623309
-    },
-    {
-      "word": "two",
-      "score": 0.21001829
-    },
-    {
-      "word": "three",
-      "score": 0.1258428
-    },
-    {
-      "word": "no",
-      "score": 0.0688955
-    },
-    {
-      "word": "six",
-      "score": 0.0639159
-    },
-    {
-      "word": "five",
-      "score": 0.061465383
-    },
-    {
-      "word": "eight",
-      "score": 0.038915534
-    },
-    {
-      "word": "seven",
-      "score": 0.014524153
-    },
-    {
-      "word": "ten",
-      "score": 0.010337788
-    },
-    {
-      "word": "nine",
-      "score": 0.005654324
-    },
-    {
-      "word": "one",
-      "score": 1.3131318E-4
-    },
-    {
-      "word": "zero",
-      "score": 1.10984496E-4
-    }
-  ]
-}
- ```
