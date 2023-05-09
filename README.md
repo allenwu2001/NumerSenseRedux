@@ -7,7 +7,7 @@ Code & Data for 2023 extension paper:
 
 ```bibtex
 @inproceedings{lin2023enumersense,
-  title={Extending "Birds have four legs?! NumerSense: Probing Numerical Commonsense Knowledge of Pre-trained Language Models"},
+  title={"Birds have FIVE legs?!" Extending Numerical Commonsense Analysis to More Modern NLP Models},
   author={Alex Baroody and Emilio Cano Renteria and Allen Wu}, 
   year={2023}
 }
