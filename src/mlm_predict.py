@@ -9,7 +9,6 @@ import sys
 import json
 
 num_list = [
-    "one",
     "two",
     "three",
     "four",
@@ -21,6 +20,7 @@ num_list = [
     "ten",
     "no",
     "zero",
+    "one",
 ]
 
 if __name__ == "__main__":
