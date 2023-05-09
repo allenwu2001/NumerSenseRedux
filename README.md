@@ -8,7 +8,7 @@ Code & Data for 2023 extension paper:
 ```bibtex
 @inproceedings{lin2023enumersense,
   title={Extending "Birds have four legs?! NumerSense: Probing Numerical Commonsense Knowledge of Pre-trained Language Models"},
-  author={Alex Baroody and Emilio Cano and Allen Wu}, 
+  author={Alex Baroody and Emilio Cano Renteria and Allen Wu}, 
   year={2023}
 }
 ```
